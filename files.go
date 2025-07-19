@@ -183,181 +183,183 @@ func main() {
 
 	fmt.Println()
 	fmt.Println("		Golang File Handling Project		")
+	var white_true = 1
+	for white_true == 1 {
+		fmt.Print("############ \n")
+		for index, work := range works {
+			fmt.Printf("%d- : %s\n", index+1, work)
+		}
 
-	fmt.Print("############ \n")
-	for index, work := range works {
-		fmt.Printf("%d- : %s\n", index+1, work)
-	}
-
-	fmt.Print("Select what to do : ")
-	var work int
-	_, err := fmt.Scanf("%d", &work)
-	if err != nil {
-		fmt.Println("Error while reading : ", err)
-		return
-	}
-	_, err = reader.ReadString('\n')
-	if err != nil {
-		fmt.Println("Error while reading : ", err)
-		return
-	}
-
-	switch work {
-	case 1:
-		fmt.Print("Enter file name: ")
-		fileName, err := reader.ReadString('\n')
+		fmt.Print("Select what to do : ")
+		var work int
+		_, err := fmt.Scanf("%d", &work)
 		if err != nil {
 			fmt.Println("Error while reading : ", err)
 			return
 		}
-		fileName = strings.TrimSpace(fileName)
-		createFile(fileName)
-	case 2:
-		fmt.Print("Enter file name: ")
-		fileName, err := reader.ReadString('\n')
+		_, err = reader.ReadString('\n')
 		if err != nil {
 			fmt.Println("Error while reading : ", err)
 			return
 		}
-		fileName = strings.TrimSpace(fileName)
-		checkFile(fileName)
-	case 3:
-		fmt.Print("Enter file name: ")
-		fileName, err := reader.ReadString('\n')
-		if err != nil {
-			fmt.Println("Error while reading : ", err)
-			return
-		}
-		fileName = strings.TrimSpace(fileName)
-		_, err = os.Stat(fileName)
-		if os.IsNotExist(err) {
-			fmt.Print("File does not exist , do you want to create it? (y,n)")
-			var create string
-			_, err := fmt.Scanf("%s", &create)
+
+		switch work {
+		case 1:
+			fmt.Print("Enter file name: ")
+			fileName, err := reader.ReadString('\n')
 			if err != nil {
 				fmt.Println("Error while reading : ", err)
 				return
 			}
-			if create == "y" {
-				createFile(fileName)
-			} else {
+			fileName = strings.TrimSpace(fileName)
+			createFile(fileName)
+		case 2:
+			fmt.Print("Enter file name: ")
+			fileName, err := reader.ReadString('\n')
+			if err != nil {
+				fmt.Println("Error while reading : ", err)
 				return
 			}
-		}
+			fileName = strings.TrimSpace(fileName)
+			checkFile(fileName)
+		case 3:
+			fmt.Print("Enter file name: ")
+			fileName, err := reader.ReadString('\n')
+			if err != nil {
+				fmt.Println("Error while reading : ", err)
+				return
+			}
+			fileName = strings.TrimSpace(fileName)
+			_, err = os.Stat(fileName)
+			if os.IsNotExist(err) {
+				fmt.Print("File does not exist , do you want to create it? (y,n)")
+				var create string
+				_, err := fmt.Scanf("%s", &create)
+				if err != nil {
+					fmt.Println("Error while reading : ", err)
+					return
+				}
+				if create == "y" {
+					createFile(fileName)
+				} else {
+					return
+				}
+			}
 
-		fmt.Print("Enter file content: ")
-		content, err := reader.ReadString('\n')
-		if err != nil {
-			fmt.Println("Error while reading : ", err)
-			return
-		}
-		content = strings.TrimSpace(content)
-		writeFile(content, fileName)
-	case 4:
-		fmt.Print("Enter file name: ")
-		fileName, err := reader.ReadString('\n')
-		if err != nil {
-			fmt.Println("Error while reading : ", err)
-			return
-		}
-		fileName = strings.TrimSpace(fileName)
-		_, err = os.Stat(fileName)
-		if os.IsNotExist(err) {
-			fmt.Println("File does not exist")
-			return
-		}
+			fmt.Print("Enter file content: ")
+			content, err := reader.ReadString('\n')
+			if err != nil {
+				fmt.Println("Error while reading : ", err)
+				return
+			}
+			content = strings.TrimSpace(content)
+			writeFile(content, fileName)
+		case 4:
+			fmt.Print("Enter file name: ")
+			fileName, err := reader.ReadString('\n')
+			if err != nil {
+				fmt.Println("Error while reading : ", err)
+				return
+			}
+			fileName = strings.TrimSpace(fileName)
+			_, err = os.Stat(fileName)
+			if os.IsNotExist(err) {
+				fmt.Println("File does not exist")
+				return
+			}
 
-		if err != nil {
-			fmt.Println("Error while reading : ", err)
-			return
-		}
+			if err != nil {
+				fmt.Println("Error while reading : ", err)
+				return
+			}
 
-		readFile(fileName)
-	case 5:
-		fmt.Print("Enter file name: ")
-		fileName, err := reader.ReadString('\n')
-		if err != nil {
-			fmt.Println("Error while reading : ", err)
-			return
-		}
-		fileName = strings.TrimSpace(fileName)
-		_, err = os.Stat(fileName)
-		if os.IsNotExist(err) {
-			fmt.Println("File does not exist")
-			return
-		}
+			readFile(fileName)
+		case 5:
+			fmt.Print("Enter file name: ")
+			fileName, err := reader.ReadString('\n')
+			if err != nil {
+				fmt.Println("Error while reading : ", err)
+				return
+			}
+			fileName = strings.TrimSpace(fileName)
+			_, err = os.Stat(fileName)
+			if os.IsNotExist(err) {
+				fmt.Println("File does not exist")
+				return
+			}
 
-		if err != nil {
-			fmt.Println("Error while reading : ", err)
-			return
-		}
+			if err != nil {
+				fmt.Println("Error while reading : ", err)
+				return
+			}
 
-		deleteFile(fileName)
-	case 6:
-		fmt.Print("Enter file name: ")
-		fileName, err := reader.ReadString('\n')
-		if err != nil {
-			fmt.Println("Error while reading : ", err)
-			return
-		}
-		fileName = strings.TrimSpace(fileName)
-		_, err = os.Stat(fileName)
-		if os.IsNotExist(err) {
-			fmt.Println("File does not exist")
-			return
-		}
+			deleteFile(fileName)
+		case 6:
+			fmt.Print("Enter file name: ")
+			fileName, err := reader.ReadString('\n')
+			if err != nil {
+				fmt.Println("Error while reading : ", err)
+				return
+			}
+			fileName = strings.TrimSpace(fileName)
+			_, err = os.Stat(fileName)
+			if os.IsNotExist(err) {
+				fmt.Println("File does not exist")
+				return
+			}
 
-		if err != nil {
-			fmt.Println("Error while reading : ", err)
-			return
-		}
+			if err != nil {
+				fmt.Println("Error while reading : ", err)
+				return
+			}
 
-		fmt.Print("Enter new file name: ")
-		newName, err := reader.ReadString('\n')
-		if err != nil {
-			fmt.Println("Error while reading : ", err)
-			return
-		}
-		newName = strings.TrimSpace(newName)
+			fmt.Print("Enter new file name: ")
+			newName, err := reader.ReadString('\n')
+			if err != nil {
+				fmt.Println("Error while reading : ", err)
+				return
+			}
+			newName = strings.TrimSpace(newName)
 
-		renameFile(fileName, newName)
-	case 7:
-		fmt.Print("Enter destination file name: ")
-		destinationFileName, err := reader.ReadString('\n')
-		if err != nil {
-			fmt.Println("Error while reading : ", err)
-			return
-		}
-		destinationFileName = strings.TrimSpace(destinationFileName)
+			renameFile(fileName, newName)
+		case 7:
+			fmt.Print("Enter destination file name: ")
+			destinationFileName, err := reader.ReadString('\n')
+			if err != nil {
+				fmt.Println("Error while reading : ", err)
+				return
+			}
+			destinationFileName = strings.TrimSpace(destinationFileName)
 
-		fmt.Print("Enter source file name:  ")
-		sourceFileName, err := reader.ReadString('\n')
-		if err != nil {
-			fmt.Println("Error while reading : ", err)
-			return
-		}
-		strings.TrimSpace(sourceFileName)
+			fmt.Print("Enter source file name:  ")
+			sourceFileName, err := reader.ReadString('\n')
+			if err != nil {
+				fmt.Println("Error while reading : ", err)
+				return
+			}
+			strings.TrimSpace(sourceFileName)
 
-		copyFile(destinationFileName, sourceFileName)
-	case 8:
-		fmt.Print("Enter file name: ")
-		fileName, err := reader.ReadString('\n')
-		if err != nil {
-			fmt.Println("Error while reading : ", err)
-			return
-		}
-		fileName = strings.TrimSpace(fileName)
+			copyFile(destinationFileName, sourceFileName)
+		case 8:
+			fmt.Print("Enter file name: ")
+			fileName, err := reader.ReadString('\n')
+			if err != nil {
+				fmt.Println("Error while reading : ", err)
+				return
+			}
+			fileName = strings.TrimSpace(fileName)
 
-		fileInformation(fileName)
-	case 9:
-		fmt.Print("Enter directory name (leave blank for current directory) : ")
-		directoryName, err := reader.ReadString('\n')
-		if err != nil {
-			fmt.Println("Error while reading : ", err)
-			return
-		}
-		directoryName = strings.TrimSpace(directoryName)
+			fileInformation(fileName)
+		case 9:
+			fmt.Print("Enter directory name (leave blank for current directory) : ")
+			directoryName, err := reader.ReadString('\n')
+			if err != nil {
+				fmt.Println("Error while reading : ", err)
+				return
+			}
+			directoryName = strings.TrimSpace(directoryName)
 
-		listDirectory(directoryName)
+			listDirectory(directoryName)
+		}
 	}
 }
