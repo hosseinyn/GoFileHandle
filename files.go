@@ -176,8 +176,18 @@ func listDirectory(directoryName string) {
 	}
 }
 
+func createDirectory(directoryName string) {
+	err := os.Mkdir(directoryName, 0755)
+	if err != nil {
+		fmt.Println("Error creating directory : ", err)
+		return
+	}
+
+	fmt.Println("Directory created : ", directoryName)
+}
+
 func main() {
-	works := []string{"Create file", "Check file", "Write file", "Read file", "Delete file", "Rename file", "Copy file", "File information", "List directory"}
+	works := []string{"Create file", "Check file", "Write file", "Read file", "Delete file", "Rename file", "Copy file", "File information", "List directory", "Create directory"}
 
 	reader := bufio.NewReader(os.Stdin)
 
@@ -360,6 +370,16 @@ func main() {
 			directoryName = strings.TrimSpace(directoryName)
 
 			listDirectory(directoryName)
+		case 10:
+			fmt.Print("Enter directory name (leave blank for current directory) : ")
+			directoryName, err := reader.ReadString('\n')
+			if err != nil {
+				fmt.Println("Error while reading : ", err)
+				return
+			}
+			directoryName = strings.TrimSpace(directoryName)
+
+			createDirectory(directoryName)
 		}
 	}
 }
